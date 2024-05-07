@@ -131,11 +131,13 @@
     <ClCompile Include="FirstComeFirstServe.cpp" />
     <ClCompile Include="Generator_danych.cpp" />
     <ClCompile Include="Process.cpp" />
+    <ClCompile Include="ShortestJobFirst.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FirstComeFirstServe.h" />
     <ClInclude Include="Generator_danych.h" />
     <ClInclude Include="Process.h" />
+    <ClInclude Include="ShortestJobFirst.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

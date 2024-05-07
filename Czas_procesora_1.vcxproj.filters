@@ -27,6 +27,9 @@
     <ClCompile Include="FirstComeFirstServe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShortestJobFirst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Process.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FirstComeFirstServe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortestJobFirst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
