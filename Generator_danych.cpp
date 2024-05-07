@@ -5,7 +5,7 @@
 #include <algorithm>
 using namespace std;
 
-void Generator_danych::generuj_dane(int size, int min_exec, int max_exec, int min_arr, int max_arr)
+void Generator_danych::generuj_dane(int size, int min_exec, int max_exec, int min_arr, int max_arr) //najpierw czas wykonania, potem czas przybycia
 {
 	struct Data
 	{
@@ -28,7 +28,7 @@ void Generator_danych::generuj_dane(int size, int min_exec, int max_exec, int mi
 	sort(data, data + size, [](Data a, Data b) {return a.arr < b.arr; });
 	for (int i = 0; i < size; i++)
 	{
-		fprintf(f, "%d %d\n", data[i].arr, data[i].exec);
+		fprintf(f, "%d %d\n", data[i].arr, data[i].exec); //najpierw czas przybycia, potem czas wykonania
 	}
 	fclose(f);
 	delete[] data;

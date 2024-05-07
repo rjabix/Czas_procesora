@@ -1,8 +1,8 @@
-#ifndef PROCESS_H
+п»ї#ifndef PROCESS_H
 #define PROCESS_H
 #pragma once
 class Process
-{// тут ініціалізація класу, 
+{// ten plik zawiera deklaracjД™ klasy Process, bez implementacji
 public:
 	int id;
 	int arrivalTime;
