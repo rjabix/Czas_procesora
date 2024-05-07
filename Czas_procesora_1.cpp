@@ -15,7 +15,7 @@ int main()
 	//Process *p1 = new Process(1, 2, 3);
 	//cout << p1->execTime;
 	// 
-	Generator_danych::generuj_dane(75, 1, 10, 1, 50); //generowanie danych do pliku dane.txt.zakomentować, jeśli nie ma potrzeby generowania danych
+	Generator_danych::generuj_dane(150, 1, 10, 1, 50); //generowanie danych do pliku dane.txt.zakomentować, jeśli nie ma potrzeby generowania danych
 
 	FILE* f = fopen("dane.txt", "rt");
 	if (f == NULL) //sprawdzanie czy plik istnieje
@@ -36,12 +36,13 @@ int main()
 	fclose(f);
 	cout<<"\n\n";
 
-	FirstComeFirstServe::FCFS(); //First Come First Serve
+	double FCFS = FirstComeFirstServe::FCFS(); //First Come First Serve
 
 	cout << "\nPress any key to continue...";
 	getchar(); //zaczekać nacisniecie klawisza
 
-	ShortestJobFirst::SJF(); //Shortest Job First
+	double SJF = ShortestJobFirst::SJF(); //Shortest Job First
 	cout<< "\nPress any key to continue...";
 	getchar(); //zaczekać nacisniecie klawisza
+	cout<<"Różnica czasów oczekiwania: "<<FCFS-SJF<<endl;
 }

@@ -4,6 +4,6 @@
 class FirstComeFirstServe
 {
 public:
-	static void FCFS();
+	static double FCFS();
 };
 #endif // !FIRST_COME_FIRST_SERVE_H

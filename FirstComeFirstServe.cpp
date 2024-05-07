@@ -6,14 +6,14 @@
 #include <vector>
 #include <algorithm>
 
-void FirstComeFirstServe::FCFS()
+double FirstComeFirstServe::FCFS()
 {
 	std::vector<Process> processes;
 	FILE* f = fopen("dane.txt", "rt");
 	if (f == NULL) //sprawdzanie czy plik istnieje
 	{
 		std::cout << "Nie udało się otworzyć pliku" << std::endl;
-		return;
+		return 0;
 	}
 
 	std::cout << "FCFS algorithm\n\n";
@@ -51,4 +51,5 @@ void FirstComeFirstServe::FCFS()
 	}
 
 	std::cout << "Średni czas oczekiwania: " << (double)sum / processes.size() << std::endl;
+	return (double)sum / processes.size();
 }
