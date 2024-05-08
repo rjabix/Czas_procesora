@@ -1,13 +1,12 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
-#include "ShortestJobFirst.h"
+#include "LastComeFirstServe.h"
 #include "Process.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
 
-double ShortestJobFirst::SJF()
-{
+double LastComeFirstServe::LCFS() {
 	std::vector<Process> processes;
 	FILE* f = fopen("dane.txt", "rt");
 	if (f == NULL) //sprawdzanie czy plik istnieje
@@ -16,7 +15,7 @@ double ShortestJobFirst::SJF()
 		return 0;
 	}
 
-	std::cout << "SJF algorithm\n\n";
+	std::cout << "LCFS algorithm\n\n";
 	while (!feof(f)) //wczytywanie danych z pliku
 	{
 		int arr, exec, i = 0;
@@ -31,39 +30,32 @@ double ShortestJobFirst::SJF()
 
 	int curr_time = 0;
 	int sum = 0, n = 0; //n-current process iterator, sum - dla wyliczania średniego czasu oczekiwania
-	
+
 	while (!Process::isAllDone(processes)) //pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
 	{
-		if (curr_time < processes[n].arrivalTime) //jeśli teraźniejszy czas jest mniejszy od czasu przybycia procesu, to odrazu robimy tak, żeby czas był równy czasowi przybycia
-			curr_time = processes[n].arrivalTime;
+		int tmpi = -1, max = INT_MIN; //indeks procesu o maksymalnym czasie przybycia
 
-		int tmpi = -1, min = INT_MAX; //indeks procesu o minimalnym czasie pracy
-
-		for (int i = 0; i < processes.size(); i++) //dodawanie procesow, którzy już nadeszli, do kolejki
+		for (int i = processes.size()-1; i > -1; i--)
 		{
-			
 			if (processes[i].arrivalTime <= curr_time && !processes[i].done) // szukamy najkrótszego procesu
 			{
-				if (processes[i].execTime < min)
+				if (processes[i].arrivalTime > max)
 				{
-					min = processes[i].execTime;
+					max = processes[i].arrivalTime;
 					tmpi = i;
 				}
 			}
-			else if(processes[i].arrivalTime > curr_time)
-				break;
 		}
 
-		if(tmpi==-1) //sprawdzian czy i ma włąściwą wartość
+		if (tmpi == -1) //sprawdzian czy i ma włąściwą wartość
 		{
-			n++;
+			curr_time++;
 			continue;
 		}
 
-		processes[tmpi].waitingTime = curr_time - processes[tmpi].arrivalTime;
 		curr_time += processes[tmpi].execTime; //process execute
+		processes[tmpi].waitingTime = curr_time - processes[tmpi].arrivalTime;
 		processes[tmpi].done = true;
-		n++;
 	}
 
 	std::cout << "\nProcess\tWaiting time\n";

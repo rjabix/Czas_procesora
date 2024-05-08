@@ -1,4 +1,5 @@
 ﻿#include "Process.h"
+#include <vector>
 Process::Process(int Id, int ArrTime, int ExecTime)
 {
 	id = Id;
@@ -9,6 +10,16 @@ Process::Process(int Id, int ArrTime, int ExecTime)
 //ten plik zawiera implementację funkcji klasy Process (w danym przypadku konstruktora)
 Process::Process()
 {
+}
+
+bool Process::isAllDone(std::vector<Process> processes) //funkcja sprawdzająca, czy wszystkie procesy zostały wykonane
+{
+	for (int i = 0; i < processes.size(); i++)
+	{
+		if (!processes[i].done)
+			return false;
+	}
+	return true;
 }
 
 
