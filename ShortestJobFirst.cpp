@@ -21,25 +21,26 @@ double ShortestJobFirst::SJF()
 	{
 		int arr, exec, i = 0;
 
-		if (fscanf(f, "%d %d", &arr, &exec) != 2) break; //jeśli nie udało się wczytać danych, to kończymy wczytywanie. fscanf zwraca ilość wczytanych danych, jeśli jest różna od 2, to kończymy wczytywanie (może być \n na końcu pliku)
+		if (fscanf(f, "%d %d", &arr, &exec) != 2) break;					//jeśli nie udało się wczytać danych, to kończymy wczytywanie. fscanf zwraca ilość wczytanych danych, jeśli jest różna od 2, to kończymy wczytywanie (może być \n na końcu pliku)
 		processes.push_back(Process(i, arr, exec));
 		i++;
 	}
 	fclose(f);
 
-	std::sort(processes.begin(), processes.end(), [](Process a, Process b) {return a.arrivalTime < b.arrivalTime; }); //sortowanie procesów po czasie przybycia, jeśli plik jest stworzony ręcznie
+	std::sort(processes.begin(), processes.end(), 
+		[](Process a, Process b) {return a.arrivalTime < b.arrivalTime; }); //sortowanie procesów po czasie przybycia, jeśli plik jest stworzony ręcznie
 
 	int curr_time = 0;
-	int sum = 0, n = 0; //n-current process iterator, sum - dla wyliczania średniego czasu oczekiwania
+	int sum = 0, n = 0;								//n-current process iterator, sum - dla wyliczania średniego czasu oczekiwania
 	
-	while (!Process::isAllDone(processes)) //pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
+	while (!Process::isAllDone(processes))			//pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
 	{
-		if (curr_time < processes[n].arrivalTime) //jeśli teraźniejszy czas jest mniejszy od czasu przybycia procesu, to odrazu robimy tak, żeby czas był równy czasowi przybycia
+		if (curr_time < processes[n].arrivalTime)	//jeśli teraźniejszy czas jest mniejszy od czasu przybycia procesu, to odrazu robimy tak, żeby czas był równy czasowi przybycia
 			curr_time = processes[n].arrivalTime;
 
-		int tmpi = -1, min = INT_MAX; //indeks procesu o minimalnym czasie pracy
+		int tmpi = -1, min = INT_MAX;				//indeks procesu o minimalnym czasie pracy
 
-		for (int i = 0; i < processes.size(); i++) //dodawanie procesow, którzy już nadeszli, do kolejki
+		for (int i = 0; i < processes.size(); i++)	//dodawanie procesow, którzy już nadeszli, do kolejki
 		{
 			
 			if (processes[i].arrivalTime <= curr_time && !processes[i].done) // szukamy najkrótszego procesu
@@ -56,7 +57,7 @@ double ShortestJobFirst::SJF()
 
 		if(tmpi==-1) //sprawdzian czy i ma włąściwą wartość
 		{
-			n++;
+			curr_time++;
 			continue;
 		}
 

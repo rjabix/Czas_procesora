@@ -26,13 +26,14 @@ double FirstComeFirstServe::FCFS()
 	}
 	fclose(f);
 
-	std::sort(processes.begin(), processes.end(), [](Process a, Process b) {return a.arrivalTime < b.arrivalTime; }); //sortowanie procesów po czasie przybycia, jeśli plik jest stworzony ręcznie
+	std::sort(processes.begin(), processes.end(), 
+		[](Process a, Process b) {return a.arrivalTime < b.arrivalTime; }); //sortowanie procesów po czasie przybycia, jeśli plik jest stworzony ręcznie
 
 	int curr_time = 0;
-	int sum = 0, n = 0; //n-current process iterator, sum - dla wyliczania średniego czasu oczekiwania
-	while (!processes.back().done) //pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
+	int sum = 0, n = 0;												//n-current process iterator, sum - dla wyliczania średniego czasu oczekiwania
+	while (!processes.back().done)									//pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
 	{
-		if (curr_time < processes[n].arrivalTime) //jeśli teraźniejszy czas jest mniejszy od czasu przybycia procesu, to odrazu robimy tak, żeby czas był równy czasowi przybycia
+		if (curr_time < processes[n].arrivalTime)					//jeśli teraźniejszy czas jest mniejszy od czasu przybycia procesu, to odrazu robimy tak, żeby czas był równy czasowi przybycia
 			curr_time = processes[n].arrivalTime;
 
 		processes[n].waitingTime = curr_time - processes[n].arrivalTime;

@@ -131,6 +131,7 @@
     <ClCompile Include="FirstComeFirstServe.cpp" />
     <ClCompile Include="Generator_danych.cpp" />
     <ClCompile Include="LastComeFirstServe.cpp" />
+    <ClCompile Include="LeastRecentlyUsed.cpp" />
     <ClCompile Include="Process.cpp" />
     <ClCompile Include="ShortestJobFirst.cpp" />
   </ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="FirstComeFirstServe.h" />
     <ClInclude Include="Generator_danych.h" />
     <ClInclude Include="LastComeFirstServe.h" />
+    <ClInclude Include="LeastRecentlyUsed.h" />
     <ClInclude Include="Process.h" />
     <ClInclude Include="ShortestJobFirst.h" />
   </ItemGroup>

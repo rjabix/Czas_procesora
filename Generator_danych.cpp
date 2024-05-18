@@ -5,9 +5,9 @@
 #include <algorithm>
 using namespace std;
 
-void Generator_danych::generuj_dane(int size, int min_exec, int max_exec, int min_arr, int max_arr) //najpierw czas wykonania, potem czas przybycia
+void Generator_danych::generuj_dane(int size, int min_exec, int max_exec, int min_arr, int max_arr, int memory_capacity, int pages_number, int pages_reference_number) //najpierw czas wykonania, potem czas przybycia
 {
-	struct Data
+	struct Data //dane, które będziemy generować dla procesów
 	{
 		int arr;
 		int exec;
@@ -32,5 +32,19 @@ void Generator_danych::generuj_dane(int size, int min_exec, int max_exec, int mi
 	}
 	fclose(f);
 	delete[] data;
+
+	//generowanie danych dla stron
+	f = fopen("dane_pages.txt", "wt");
+	if (f == NULL)
+	{
+		cout << "Nie udało się otworzyć pliku" << endl;
+		return;
+	}
+	fprintf(f, "%d\n", memory_capacity);
+	for (int i = 0; i < pages_number; i++) //generowanie "pages_number" stron
+	{
+		fprintf(f, "%d\n", rand() % pages_reference_number); //generowanie referencji stron od 0 do pages_reference_number
+	}
+	fclose(f);
 }
 // Path: Process.cpp

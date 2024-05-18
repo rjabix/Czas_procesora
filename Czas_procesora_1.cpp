@@ -4,17 +4,21 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include "Process.h"
+#include <tuple>
 #include "Generator_danych.h"
+//import algorytmów do symulacja czasu procesora
+#include "Process.h"
 #include "FirstComeFirstServe.h"
 #include "ShortestJobFirst.h"
 #include "LastComeFirstServe.h"
+//import algorytmów do algorytmów zastępowania stron
+#include "LeastRecentlyUsed.h"
 
 using namespace std;
 
 int main()
 {
-	Generator_danych::generuj_dane(150, 1, 10, 1, 50); //generowanie danych do pliku dane.txt.zakomentować, jeśli nie ma potrzeby generowania danych
+	Generator_danych::generuj_dane(150, 1, 10, 1, 50, 5, 15, 10); //generowanie danych do pliku dane.txt.zakomentować, jeśli nie ma potrzeby generowania danych
 
 	FILE* f = fopen("dane.txt", "rt");
 	if (f == NULL) //sprawdzanie czy plik istnieje
@@ -24,7 +28,7 @@ int main()
 	}
 
 	int k = 0;
-	while (!feof(f)) //wczytywanie danych z pliku
+	while (!feof(f)) //wczytywanie danych z pliku dane.txt
 	{
 		int arr, exec;
 
@@ -36,6 +40,8 @@ int main()
 	fclose(f);
 	cout << "\n\n";
 
+
+	//--------------------ALGORYTMY SYMULACJI CZASU PROCESORA--------------------
 	map<string, double> results{
 		  {"FCFS", 0.0},
 		  {"LCFS", 0.0},
@@ -61,4 +67,19 @@ int main()
 	f = fopen("wyniki.csv", "at"); //zapisanie wyników do pliku
     fprintf(f, "%d,%f,%f,%f,%f,%f,%f\n", k, results["FCFS"], results["LCFS"], results["SJF"], results["FCFS"] - results["SJF"], results["LCFS"] - results["SJF"], results["FCFS"] - results["LCFS"]);
 	fclose(f); //illosc danych, FCFS, LCFS, SJF, różnica FCFS-SJF, różnica LCFS-SJF, różnica FCFS-LCFS
+
+
+
+	//--------------------ALGORYTMY ZASTĘPOWANIA STRON--------------------
+
+
+
+	auto replacement_results = LeastRecentlyUsed::LRU(); //Least Recently Used
+	cout << "Algorytmy zastępowania stron: \n\n\tLRU:\nIllość błędów = " << get<0>(replacement_results) <<"\nSuccess rate = " << (double) get<1>(replacement_results)/(get<0>(replacement_results)+get<1>(replacement_results)) *100 <<"%\n";
+	
+	f = fopen("wyniki_zastepowania.csv", "at"); //zapisanie wyników do pliku
+	fprintf(f, "%d,%d,%d,%f\n", get<2>(replacement_results), get<1>(replacement_results), get<0>(replacement_results) + get<1>(replacement_results), (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100);
+	//implemenatcja 2. algorytmu...
+	
+	fclose(f);
 }
