@@ -13,6 +13,7 @@
 #include "LastComeFirstServe.h"
 //import algorytmów do algorytmów zastępowania stron
 #include "LeastRecentlyUsed.h"
+#include "FirstInFirstOut.h"
 
 using namespace std;
 
@@ -42,6 +43,9 @@ int main()
 
 
 	//--------------------ALGORYTMY SYMULACJI CZASU PROCESORA--------------------
+
+
+
 	map<string, double> results{
 		  {"FCFS", 0.0},
 		  {"LCFS", 0.0},
@@ -59,6 +63,7 @@ int main()
 	results["SJF"]= ShortestJobFirst::SJF(); //Shortest Job First
 
 	cout << "\nPress any key to continue...";
+	//getchar();
 
 	cout << "\nRóżnica czasów oczekiwania FCFS - SJF: " << results["FCFS"] - results["SJF"] << endl;
 	cout << "Różnica czasów oczekiwania LCFS - SJF: " << results["LCFS"] - results["SJF"] << endl;
@@ -78,8 +83,14 @@ int main()
 	cout << "Algorytmy zastępowania stron: \n\n\tLRU:\nIllość błędów = " << get<0>(replacement_results) <<"\nSuccess rate = " << (double) get<1>(replacement_results)/(get<0>(replacement_results)+get<1>(replacement_results)) *100 <<"%\n";
 	
 	f = fopen("wyniki_zastepowania.csv", "at"); //zapisanie wyników do pliku
-	fprintf(f, "%d,%d,%d,%f\n", get<2>(replacement_results), get<1>(replacement_results), get<0>(replacement_results) + get<1>(replacement_results), (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100);
-	//implemenatcja 2. algorytmu...
-	
+	fprintf(f, "%d,%d,%d,%f", 
+		get<2>(replacement_results), get<1>(replacement_results), get<0>(replacement_results) + get<1>(replacement_results), (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100);
+		//page hits, number of pages, success rate	
+
+	replacement_results = FirstInFirstOut::FIFO(); //First In First Out
+	cout << "Algorytmy zastępowania stron: \n\n\tLRU:\nIllość błędów = " << get<0>(replacement_results) << "\nSuccess rate = " << (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100 << "%\n";
+	fprintf(f, ",%d,%d,%d,%f\n", 
+		get<2>(replacement_results), get<1>(replacement_results), get<0>(replacement_results) + get<1>(replacement_results), (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100);
+		//page hits, number of pages, success rate
 	fclose(f);
 }

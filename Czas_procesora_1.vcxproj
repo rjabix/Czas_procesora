@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Czas_procesora_1.cpp" />
     <ClCompile Include="FirstComeFirstServe.cpp" />
+    <ClCompile Include="FirstInFirstOut.cpp" />
     <ClCompile Include="Generator_danych.cpp" />
     <ClCompile Include="LastComeFirstServe.cpp" />
     <ClCompile Include="LeastRecentlyUsed.cpp" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FirstComeFirstServe.h" />
+    <ClInclude Include="FirstInFirstOut.h" />
     <ClInclude Include="Generator_danych.h" />
     <ClInclude Include="LastComeFirstServe.h" />
     <ClInclude Include="LeastRecentlyUsed.h" />
