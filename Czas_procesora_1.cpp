@@ -22,7 +22,7 @@ int main()
 	int replays = 1, size = 150, min_exec = 1, max_exec = 10, min_arr = 0, max_arr = 50, memory_capacity = 5, pages_number = 15, pages_reference_number = 10; //znaczenia standartowe
 	cout << "Podaj ilość powtórzeń(1): ";
 	cin >> replays;
-	cout<<"Wykorzysta standartowe wartości? (y/n): ";
+	cout<<"Wykorzystać standartowe wartości? (y/n): ";
 	char ans; cin >> ans;
 	if (ans == 'n' || ans=='N') {
 		cout << "Podaj ilość procesów(150): ";
@@ -69,10 +69,10 @@ int main()
 		results["SJF"] = ShortestJobFirst::SJF(); //Shortest Job First
 
 
-		cout << "\nRóżnica czasów oczekiwania FCFS - SJF: " << results["FCFS"] - results["SJF"] << endl;
+		/*cout << "\nRóżnica czasów oczekiwania FCFS - SJF: " << results["FCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania LCFS - SJF: " << results["LCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania FCFS - LCFS: " << results["FCFS"] - results["LCFS"] << endl;
-
+		*/
 		fprintf(fout_czas, "%d,%f,%f,%f,%f,%f,%f\n", size, results["FCFS"], results["LCFS"], results["SJF"], results["FCFS"] - results["SJF"], results["LCFS"] - results["SJF"], results["FCFS"] - results["LCFS"]);
 		//illosc danych, FCFS, LCFS, SJF, różnica FCFS-SJF, różnica LCFS-SJF, różnica FCFS-LCFS
 
@@ -81,9 +81,9 @@ int main()
 		//--------------------ALGORYTMY ZASTĘPOWANIA STRON--------------------
 
 
-		cout << "\n\n";
+
 		auto replacement_results = LeastRecentlyUsed::LRU(); //Least Recently Used
-		cout << "Algorytmy zastępowania stron: \n\n\tLRU:\nIllość błędów = " << get<0>(replacement_results) << "\nSuccess rate = " << (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100 << "%\n";
+		//cout << "Algorytmy zastępowania stron: \n\n\tLRU:\nIllość błędów = " << get<0>(replacement_results) << "\nSuccess rate = " << (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100 << "%\n";
 
 		fout_pages = fopen("wyniki_zastepowania.csv", "at"); //zapisanie wyników do pliku
 		fprintf(fout_pages, "%d,%d,%d,%f",
@@ -91,7 +91,7 @@ int main()
 		//page hits, number of pages, success rate	
 
 		replacement_results = FirstInFirstOut::FIFO(); //First In First Out
-		cout << "Algorytmy zastępowania stron: \n\n\tLRU:\nIllość błędów = " << get<0>(replacement_results) << "\nSuccess rate = " << (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100 << "%\n";
+		//cout << "Algorytmy zastępowania stron: \n\n\tFIFO:\nIllość błędów = " << get<0>(replacement_results) << "\nSuccess rate = " << (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100 << "%\n";
 		fprintf(fout_pages, ",%d,%d,%d,%f\n",
 			get<2>(replacement_results), get<1>(replacement_results), get<0>(replacement_results) + get<1>(replacement_results), (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100);
 		//page hits, number of pages, success rate

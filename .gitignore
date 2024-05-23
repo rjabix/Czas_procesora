@@ -360,6 +360,9 @@ MigrationBackup/
 .ionide/
 
 #plik with test data
-dane.txt
+./dane.txt
+./dane_pages.txt
+./wyniki.csv
+./wyniki_zastepowania.csv
 # Fody - auto-generated XML schema
 FodyWeavers.xsd

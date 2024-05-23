@@ -16,7 +16,7 @@ double FirstComeFirstServe::FCFS()
 		return 0;
 	}
 
-	std::cout << "FCFS algorithm\n\n";
+	//std::cout << "FCFS algorithm\n\n";
 	while (!feof(f)) //wczytywanie danych z pliku
 	{
 		int arr, exec;
@@ -36,10 +36,8 @@ double FirstComeFirstServe::FCFS()
 		if (curr_time < processes[n].arrivalTime)					//jeśli teraźniejszy czas jest mniejszy od czasu przybycia procesu, to odrazu robimy tak, żeby czas był równy czasowi przybycia
 			curr_time = processes[n].arrivalTime;
 
-		processes[n].waitingTime = curr_time - processes[n].arrivalTime;
-
+		processes[n].waitingTime = curr_time - processes[n].arrivalTime; //wyliczanie czasu oczekiwania
 		curr_time += processes[n].execTime; //process execute
-
 		processes[n].done = true;
 		n++;
 	}
@@ -47,9 +45,7 @@ double FirstComeFirstServe::FCFS()
 	for (int i = 0; i < processes.size(); i++) //wyliczanie średniego czasu oczekiwania
 	{
 		sum += processes[i].waitingTime;
-		//std::cout << "Process " << i << " Waiting time: " << processes[i].waitingTime << std::endl;
 	}
 
-	//std::cout << "Średni czas oczekiwania: " << (double)sum / processes.size() << std::endl;
 	return (double)sum / processes.size();
 }

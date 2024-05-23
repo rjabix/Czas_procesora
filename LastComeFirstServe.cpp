@@ -15,7 +15,7 @@ double LastComeFirstServe::LCFS() {
 		return 0;
 	}
 
-	std::cout << "LCFS algorithm\n\n";
+	//std::cout << "LCFS algorithm\n\n";
 	while (!feof(f)) //wczytywanie danych z pliku
 	{
 		int arr, exec, i = 0;
@@ -54,17 +54,15 @@ double LastComeFirstServe::LCFS() {
 			continue;
 		}
 
+		processes[tmpi].waitingTime = curr_time - processes[tmpi].arrivalTime; //wyliczanie czasu oczekiwania
 		curr_time += processes[tmpi].execTime; //process execute
-		processes[tmpi].waitingTime = curr_time - processes[tmpi].arrivalTime;
 		processes[tmpi].done = true;
 	}
 
 	for (int i = 0; i < processes.size(); i++) //wyliczanie średniego czasu oczekiwania
 	{
 		sum += processes[i].waitingTime;
-		//std::cout << "Process " << i << " Waiting time: " << processes[i].waitingTime << std::endl; //zakomentować jeśli nie chcemy wyświetlać czasu oczekiwania każdego elementu
 	}
 
-	//std::cout << "Średni czas oczekiwania: " << (double)sum / processes.size() << std::endl;
 	return (double)sum / processes.size();
 }
