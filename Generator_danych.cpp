@@ -5,14 +5,14 @@
 #include <algorithm>
 using namespace std;
 
-void Generator_danych::generuj_dane(int size, int min_exec, int max_exec, int min_arr, int max_arr, int memory_capacity, int pages_number, int pages_reference_number) //najpierw czas wykonania, potem czas przybycia
+void Generator_danych::generuj_dane(int seed, int size, int min_exec, int max_exec, int min_arr, int max_arr, int memory_capacity, int pages_number, int pages_reference_number) //najpierw czas wykonania, potem czas przybycia
 {
 	struct Data //dane, które będziemy generować dla procesów
 	{
 		int arr;
 		int exec;
 	};
-	srand(time(NULL));
+	srand(time(NULL) + seed);
 	FILE *f = fopen("dane.txt", "wt");
 	if (min_arr > max_arr || min_exec > max_exec || min_arr > max_arr || min_exec<0 || max_exec < 0 || size < 0)
 	{

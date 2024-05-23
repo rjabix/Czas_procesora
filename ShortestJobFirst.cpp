@@ -67,13 +67,12 @@ double ShortestJobFirst::SJF()
 		n++;
 	}
 
-	std::cout << "\nProcess\tWaiting time\n";
 	for (int i = 0; i < processes.size(); i++) //wyliczanie średniego czasu oczekiwania
 	{
 		sum += processes[i].waitingTime;
-		std::cout << "Process " << i << " Waiting time: " << processes[i].waitingTime << std::endl; //zakomentować jeśli nie chcemy wyświetlać czasu oczekiwania każdego elementu
+		//std::cout << "Process " << i << " Waiting time: " << processes[i].waitingTime << std::endl; //zakomentować jeśli nie chcemy wyświetlać czasu oczekiwania każdego elementu
 	}
 
-	std::cout << "Średni czas oczekiwania: " << (double)sum / processes.size() << std::endl;
+	//std::cout << "Średni czas oczekiwania: " << (double)sum / processes.size() << std::endl;
 	return (double)sum / processes.size();
 }
