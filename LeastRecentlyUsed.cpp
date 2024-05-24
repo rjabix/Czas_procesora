@@ -17,7 +17,7 @@ std::tuple<int, int, int>LeastRecentlyUsed::LRU() {
     std::vector<int>reference_string;                               // wektor, który zawiera referencje stron
     int size;   												    // ilość stron w pamięci
     
-    fscanf(f, "%d", &size);                                         // wczytywanie ilości stron
+    fscanf(f, "%d", &size);                                         // wczytywanie ilości pamięci
     while (!feof(f)) {                                              // wczytywanie referencji stron
 		int page;
 		if (fscanf(f, "%d", &page) != 1) break;

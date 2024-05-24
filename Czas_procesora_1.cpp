@@ -61,20 +61,20 @@ int main()
 			  {"LCFS", 0.0},
 			  {"SJF", 0.0}
 		};
-/*
+
 		results["FCFS"] = FirstComeFirstServe::FCFS(); //First Come First Serve
 
 		results["LCFS"] = LastComeFirstServe::LCFS(); //Last Come First Serve
 
 		results["SJF"] = ShortestJobFirst::SJF(); //Shortest Job First
-*/
+
 		/*
 		cout << "\nRóżnica czasów oczekiwania FCFS - SJF: " << results["FCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania LCFS - SJF: " << results["LCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania FCFS - LCFS: " << results["FCFS"] - results["LCFS"] << endl;
 		*/
 		
-//		fprintf(fout_czas, "%d,%f,%f,%f,%f,%f,%f\n", size, results["FCFS"], results["LCFS"], results["SJF"], results["FCFS"] - results["SJF"], results["LCFS"] - results["SJF"], results["FCFS"] - results["LCFS"]);
+		fprintf(fout_czas, "%d,%f,%f,%f,%f,%f,%f\n", size, results["FCFS"], results["LCFS"], results["SJF"], results["FCFS"] - results["SJF"], results["LCFS"] - results["SJF"], results["FCFS"] - results["LCFS"]);
 		//ilosc danych, FCFS, LCFS, SJF, różnica FCFS-SJF, różnica LCFS-SJF, różnica FCFS-LCFS
 
 
