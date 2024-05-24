@@ -12,7 +12,7 @@ double LastComeFirstServe::LCFS() {
 	if (f == NULL)													//sprawdzanie czy plik istnieje
 	{
 		std::cout << "Nie udało się otworzyć pliku" << std::endl;
-		return 0;
+		throw new std::exception("Nie udało się otworzyć pliku");
 	}
 
 	//std::cout << "LCFS algorithm\n\n";

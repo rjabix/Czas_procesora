@@ -12,8 +12,8 @@ double FirstComeFirstServe::FCFS()
 	FILE* f = fopen("dane.txt", "rt");
 	if (f == NULL) //sprawdzanie czy plik istnieje
 	{
-		std::cout << "Nie udało się otworzyć pliku" << std::endl;
-		return 0;
+		std::cout << "Nie udalo sie otworzyc pliku" << std::endl;
+		throw new std::exception("Nie udalo sie otworzyc pliku");
 	}
 
 	//std::cout << "FCFS algorithm\n\n";

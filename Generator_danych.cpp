@@ -12,12 +12,12 @@ void Generator_danych::generuj_dane(int seed, int size, int min_exec, int max_ex
 		int arr;
 		int exec;
 	};
-	srand(time(NULL) + seed);
+	srand(time(NULL) + static_cast<long long>(seed*seed*3));
 	FILE *f = fopen("dane.txt", "wt");
 	if (min_arr > max_arr || min_exec > max_exec || min_arr > max_arr || min_exec<0 || max_exec < 0 || size < 0)
 	{
 		cout << "Błędne dane" << endl;
-		return;
+		throw new std::exception("Błędne dane");
 	}
 	Data *data = new Data[size];
 	for (int i = 0; i < size; i++)

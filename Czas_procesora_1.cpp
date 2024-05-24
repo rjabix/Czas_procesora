@@ -20,12 +20,12 @@ using namespace std;
 int main()
 {
 	int replays = 1, size = 150, min_exec = 1, max_exec = 10, min_arr = 0, max_arr = 50, memory_capacity = 5, pages_number = 15, pages_reference_number = 10; //znaczenia standartowe
-	cout << "Podaj ilość powtórzeń(1): ";
+	cout << "Podaj ilosc testow(1): ";
 	cin >> replays;
-	cout<<"Wykorzystać standartowe wartości? (y/n): ";
+	cout<<"Wykorzystac standartowe wartosci? (y/n): ";
 	char ans; cin >> ans;
 	if (ans == 'n' || ans=='N') {
-		cout << "Podaj ilość procesów(150): ";
+		cout << "Podaj ilosc procesow(150): ";
 		cin >> size;
 		cout << "Podaj minimalny czas wykonania(1): ";
 		cin >> min_exec;
@@ -35,11 +35,11 @@ int main()
 		cin >> min_arr;
 		cout << "Podaj maksymalny czas przybycia(50): ";
 		cin >> max_arr;
-		cout << "Podaj pojemność pamięci(5): ";
+		cout << "Podaj pojemnosc pamieci(5): ";
 		cin >> memory_capacity;
-		cout << "Podaj ilość stron(15): ";
+		cout << "Podaj ogolna ilosc stron(15): ";
 		cin >> pages_number;
-		cout << "Podaj ilość różnych referencji stron(10): ";
+		cout << "Podaj ilosc roznych referencji stron(10): ";
 		cin >> pages_reference_number;
 	}
 	FILE *fout_czas = fopen("wyniki.csv", "wt");
@@ -61,20 +61,21 @@ int main()
 			  {"LCFS", 0.0},
 			  {"SJF", 0.0}
 		};
-
+/*
 		results["FCFS"] = FirstComeFirstServe::FCFS(); //First Come First Serve
 
 		results["LCFS"] = LastComeFirstServe::LCFS(); //Last Come First Serve
 
 		results["SJF"] = ShortestJobFirst::SJF(); //Shortest Job First
-
-
-		/*cout << "\nRóżnica czasów oczekiwania FCFS - SJF: " << results["FCFS"] - results["SJF"] << endl;
+*/
+		/*
+		cout << "\nRóżnica czasów oczekiwania FCFS - SJF: " << results["FCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania LCFS - SJF: " << results["LCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania FCFS - LCFS: " << results["FCFS"] - results["LCFS"] << endl;
 		*/
-		fprintf(fout_czas, "%d,%f,%f,%f,%f,%f,%f\n", size, results["FCFS"], results["LCFS"], results["SJF"], results["FCFS"] - results["SJF"], results["LCFS"] - results["SJF"], results["FCFS"] - results["LCFS"]);
-		//illosc danych, FCFS, LCFS, SJF, różnica FCFS-SJF, różnica LCFS-SJF, różnica FCFS-LCFS
+		
+//		fprintf(fout_czas, "%d,%f,%f,%f,%f,%f,%f\n", size, results["FCFS"], results["LCFS"], results["SJF"], results["FCFS"] - results["SJF"], results["LCFS"] - results["SJF"], results["FCFS"] - results["LCFS"]);
+		//ilosc danych, FCFS, LCFS, SJF, różnica FCFS-SJF, różnica LCFS-SJF, różnica FCFS-LCFS
 
 
 
@@ -88,13 +89,13 @@ int main()
 		fout_pages = fopen("wyniki_zastepowania.csv", "at"); //zapisanie wyników do pliku
 		fprintf(fout_pages, "%d,%d,%d,%f",
 			get<2>(replacement_results), get<1>(replacement_results), get<0>(replacement_results) + get<1>(replacement_results), (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100);
-		//page hits, number of pages, success rate	
+		//memory_size, page hits, number of pages, success rate	
 
 		replacement_results = FirstInFirstOut::FIFO(); //First In First Out
 		//cout << "Algorytmy zastępowania stron: \n\n\tFIFO:\nIllość błędów = " << get<0>(replacement_results) << "\nSuccess rate = " << (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100 << "%\n";
 		fprintf(fout_pages, ",%d,%d,%d,%f\n",
 			get<2>(replacement_results), get<1>(replacement_results), get<0>(replacement_results) + get<1>(replacement_results), (double)get<1>(replacement_results) / (get<0>(replacement_results) + get<1>(replacement_results)) * 100);
-		//page hits, number of pages, success rate
+		//memory_size, page hits, number of pages, success rate
 	}
 	fclose(fout_czas);
 	fclose(fout_pages);

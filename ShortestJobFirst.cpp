@@ -13,7 +13,7 @@ double ShortestJobFirst::SJF()
 	if (f == NULL) //sprawdzanie czy plik istnieje
 	{
 		std::cout << "Nie udało się otworzyć pliku" << std::endl;
-		return 0;
+		throw new std::exception("Nie udało się otworzyć pliku");
 	}
 
 	//std::cout << "SJF algorithm\n\n";
