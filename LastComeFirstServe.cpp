@@ -30,9 +30,9 @@ double LastComeFirstServe::LCFS() {
 		[](Process a, Process b) {return a.arrivalTime < b.arrivalTime; }); //sortowanie procesów po czasie przybycia, jeśli plik jest stworzony ręcznie
 
 	int curr_time = 0;
-	int sum = 0;														//n-current process iterator, sum - dla wyliczania średniego czasu oczekiwania
-
-	while (!Process::isAllDone(processes))								//pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
+	unsigned long long sum = 0;														//sum - dla wyliczania średniego czasu oczekiwania
+	int n = 0;
+	while (n < processes.size())								//pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
 	{
 		int tmpi = -1, max = INT_MIN;									//indeks procesu o maksymalnym czasie przybycia
 
@@ -57,7 +57,10 @@ double LastComeFirstServe::LCFS() {
 		processes[tmpi].waitingTime = curr_time - processes[tmpi].arrivalTime; //wyliczanie czasu oczekiwania
 		curr_time += processes[tmpi].execTime; //process execute
 		processes[tmpi].done = true;
+		n++;
 	}
+
+	if (!Process::isAllDone(processes)) throw new std::exception("Nie wszystkie procesy zostały wykonane");
 
 	for (int i = 0; i < processes.size(); i++) //wyliczanie średniego czasu oczekiwania
 	{
