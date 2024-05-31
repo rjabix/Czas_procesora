@@ -69,6 +69,9 @@ int main()
 		results["SJF"] = ShortestJobFirst::SJF(); //Shortest Job First
 
 		/*
+		cout << "Algorytmy symulacji czasu procesora: \n\n\tFCFS:\nŚredni czas oczekiwania = " << results["FCFS"] << endl;
+		cout << "\n\tLCFS:\nŚredni czas oczekiwania = " << results["LCFS"] << endl;
+		cout << "\n\tSJF:\nŚredni czas oczekiwania = " << results["SJF"] << endl;
 		cout << "\nRóżnica czasów oczekiwania FCFS - SJF: " << results["FCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania LCFS - SJF: " << results["LCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania FCFS - LCFS: " << results["FCFS"] - results["LCFS"] << endl;

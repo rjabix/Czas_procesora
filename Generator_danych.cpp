@@ -14,7 +14,7 @@ void Generator_danych::generuj_dane(int seed, int size, int min_exec, int max_ex
 	};
 	srand(time(NULL) + static_cast<long long>(seed*seed*3));
 	FILE *f = fopen("dane.txt", "wt");
-	if (min_arr > max_arr || min_exec > max_exec || min_arr > max_arr || min_exec<0 || max_exec < 0 || size < 0)
+	if (min_arr > max_arr || min_exec > max_exec || min_arr > max_arr || min_exec<0 || max_exec < 0 || size < 0 || min_arr < 0 || pages_number < 0 || pages_reference_number < 1)
 	{
 		cout << "Błędne dane" << endl;
 		throw new std::exception("Błędne dane");
