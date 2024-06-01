@@ -32,13 +32,13 @@ double LastComeFirstServe::LCFS() {
 	int curr_time = 0;
 	unsigned long long sum = 0;														//sum - dla wyliczania średniego czasu oczekiwania
 	int n = 0;
-	while (n < processes.size())								//pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
+	while (n < processes.size())								//pętlia główna.
 	{
 		int tmpi = -1, max = INT_MIN;									//indeks procesu o maksymalnym czasie przybycia
 
 		for (int i = processes.size()-1; i > -1; i--)
 		{
-			if (processes[i].arrivalTime <= curr_time && !processes[i].done) // szukamy najkrótszego procesu
+			if (processes[i].arrivalTime <= curr_time && !processes[i].done) // szukamy procesu o największym czasie przybycia
 			{
 				if (processes[i].arrivalTime > max)
 				{

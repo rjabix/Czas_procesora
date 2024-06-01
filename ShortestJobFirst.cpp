@@ -34,12 +34,12 @@ double ShortestJobFirst::SJF()
 	unsigned long long sum = 0;								//sum - dla wyliczania średniego czasu oczekiwania
 	int n = 0;												//n - ilość zakończonych procesów
 
-	while (n<processes.size())			//pętlia główna. .back() zwraca ostatni element z wektora, done - zmienna, która mówi, czy proces się zakończył
+	while (n<processes.size())			//pętlia główna.
 	{
 
 		int tmpi = -1, min = INT_MAX;				//indeks procesu o minimalnym czasie pracy
 
-		for (int i = 0; i < processes.size(); i++)	//dodawanie procesow, którzy już nadeszli, do kolejki
+		for (int i = 0; i < processes.size(); i++)
 		{
 			
 			if (processes[i].arrivalTime <= curr_time && !processes[i].done) // szukamy najkrótszego procesu
