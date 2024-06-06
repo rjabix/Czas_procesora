@@ -366,3 +366,10 @@ MigrationBackup/
 ./wyniki_zastepowania.csv
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/test_fcfs.csv
+/test_lcfs.csv
+/test_sjf.csv
+/wyniki.csv
+/wyniki_zastepowania.csv
+/dane_pages.txt
+/dane.txt
