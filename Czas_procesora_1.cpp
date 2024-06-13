@@ -22,9 +22,9 @@ int main()
 	int replays = 1, size = 150, min_exec = 1, max_exec = 10, min_arr = 0, max_arr = 50, memory_capacity = 5, pages_number = 15, pages_reference_number = 10; //znaczenia standartowe
 	cout << "Podaj ilosc testow(1): ";
 	cin >> replays;
-	cout<<"Wykorzystac standartowe wartosci? (y/n): ";
+	cout << "Wykorzystac standartowe wartosci? (y/n): ";
 	char ans; cin >> ans;
-	if (ans == 'n' || ans=='N') {
+	if (ans == 'n' || ans == 'N') {
 		cout << "Podaj ilosc procesow(150): ";
 		cin >> size;
 		cout << "Podaj minimalny czas wykonania(1): ";
@@ -42,8 +42,8 @@ int main()
 		cout << "Podaj ilosc roznych referencji stron(10): ";
 		cin >> pages_reference_number;
 	}
-	FILE *fout_czas = fopen("wyniki.csv", "wt");
-	FILE *fout_pages = fopen("wyniki_zastepowania.csv", "wt");	//"wt" jeśli chcemy tylko rezultaty tego testu, "at" jeśli chcemy dodać
+	FILE* fout_czas = fopen("wyniki.csv", "wt");
+	FILE* fout_pages = fopen("wyniki_zastepowania.csv", "wt");	//"wt" jeśli chcemy tylko rezultaty tego testu, "at" jeśli chcemy dodać
 	if (fout_czas == NULL || fout_pages == NULL) throw new exception("Unable to open to out files.");
 
 	for (int i = 0; i < replays; i++) {
@@ -76,7 +76,7 @@ int main()
 		cout << "Różnica czasów oczekiwania LCFS - SJF: " << results["LCFS"] - results["SJF"] << endl;
 		cout << "Różnica czasów oczekiwania FCFS - LCFS: " << results["FCFS"] - results["LCFS"] << endl;
 		*/
-		
+
 		fprintf(fout_czas, "%d,%f,%f,%f,%f,%f,%f\n", size, results["FCFS"], results["LCFS"], results["SJF"], results["FCFS"] - results["SJF"], results["LCFS"] - results["SJF"], results["FCFS"] - results["LCFS"]);
 		//ilosc danych, FCFS, LCFS, SJF, różnica FCFS-SJF, różnica LCFS-SJF, różnica FCFS-LCFS
 

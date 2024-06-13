@@ -62,10 +62,13 @@ double LastComeFirstServe::LCFS() {
 
 	if (!Process::isAllDone(processes)) throw new std::exception("Nie wszystkie procesy zostały wykonane");
 
+	f = fopen("test_lcfs.csv", "wt");
 	for (int i = 0; i < processes.size(); i++) //wyliczanie średniego czasu oczekiwania
 	{
 		sum += processes[i].waitingTime;
+		fprintf(f, "%d,%d\n", i, processes[i].waitingTime);
 	}
+	fclose(f);
 
 	return (double)sum / processes.size();
 }

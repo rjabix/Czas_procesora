@@ -49,5 +49,5 @@ std::tuple<int, int, int>FirstInFirstOut::FIFO() {
 			}
 		}
 	}
-	return std::make_tuple(PageFaults, PageHits, size);				   // zwróć ilość błędów stron i ilość sukcesów oraz n pamięci w posatci krotki
+	return std::make_tuple(PageFaults, PageHits, size);				 // zwróć ilość błędów stron i ilość sukcesów oraz n pamięci w posatci krotki
 }

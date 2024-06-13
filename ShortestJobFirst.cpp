@@ -68,10 +68,13 @@ double ShortestJobFirst::SJF()
 
 	if (!Process::isAllDone(processes)) throw new std::exception("Error: not all processes were executed"); //sprawdzanie czy wszystkie procesy zostały wykonane
 	
+	f = fopen("test_sjf.csv", "wt");
 	for (int i = 0; i < processes.size(); i++) //wyliczanie średniego czasu oczekiwania
 	{
 		sum += processes[i].waitingTime;
+		fprintf(f, "%d,%d\n", i, processes[i].waitingTime);
 	}
+	fclose(f);
 
 	return (double)sum / processes.size();
 }
